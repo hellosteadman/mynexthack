@@ -1,0 +1,6 @@
+<ul class="nav navbar-nav">
+	<li><a href="{% url 'all_ideas' %}">All the ideas</a></li>
+	{% if request.user.is_authenticated %}
+		<li><a href="{% url 'my_ideas' %}">My stuff</a></li>
+	{% endif %}
+</ul>

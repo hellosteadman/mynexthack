@@ -1,0 +1,5 @@
+._*
+*.pyc
+logs/*
+mynexthack/settings_local.py
+static/*

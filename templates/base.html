@@ -1,0 +1,28 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block extra_head %}
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="{{ MEDIA_URL }}css/style.css" />
+	<link rel="shortcut icon" href="{{ MEDIA_URL }}img/favicon.ico" />
+	<link rel="icon" href="{{ MEDIA_URL }}img/favicon.png" />
+	
+	{{ block.super }}
+{% endblock extra_head %}
+
+{% block after_header %}
+	<div class="page-header" data-importance="2">
+		<div class="container">
+			{% block page_header %}{% endblock %}
+		</div>
+	</div>
+{% endblock after_header %}
+
+{% block content %}
+	{% block form_content %}{% endblock %}
+	{% block form_footer %}{% endblock %}
+{% endblock content %}
+
+{% block javascript %}
+	<script src="{{ MEDIA_URL }}js/functions.js"></script>
+	{{ block.super }}
+{% endblock javascript %}
