@@ -6,7 +6,7 @@ class CommentForm(forms.ModelForm):
 	def __init__(self, *args, **kwargs):
 		super(CommentForm, self).__init__(*args, **kwargs)
 		self.fields['body'].widget.attrs['placeholder'] = 'What\'s your comment?'
-		self.fields['body'].widget.attrs['class'] = 'form-control'
+		self.fields['body'].widget.attrs['class'] = 'input-block-level'
 	
 	def save(self, commit = True):
 		obj = super(CommentForm, self).save(commit = False)

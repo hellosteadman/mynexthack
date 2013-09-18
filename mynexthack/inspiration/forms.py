@@ -8,7 +8,7 @@ class IdeaForm(forms.ModelForm):
 		self.fields['title'].widget.attrs['class'] = 'form-control input-large'
 		self.fields['title'].widget.attrs['required'] = self.fields['title'].required and 'required' or ''
 		self.fields['description'].widget.attrs['placeholder'] = 'Give us a bit more detail'
-		self.fields['description'].widget.attrs['class'] = 'form-control'
+		self.fields['description'].widget.attrs['class'] = 'input-block-level'
 	
 	class Meta:
 		fields = ('title', 'description')
