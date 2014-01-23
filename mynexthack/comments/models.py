@@ -3,7 +3,6 @@ from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
 from django.contrib.sites.models import Site
 from django.conf import settings
-from bambu.mail.shortcuts import render_to_mail
 import requests, logging
 
 class Comment(models.Model):

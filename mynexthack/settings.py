@@ -87,16 +87,8 @@ INSTALLED_APPS = (
 	'south',
 	'taggit',
 	'social_auth',
-	'bambu.bootstrap',
-	'bambu.pages',
-	'bambu.faq',
-	'bambu.fileupload',
-	'bambu.jwplayer',
-	'bambu.attachments',
-	'bambu.enquiries',
 	'bambu.enqueue',
-	'bambu.mail',
-	'bambu.grids',
+	'bambu.bootstrap.v2',
 	'mynexthack.inspiration',
 	'mynexthack.comments'
 )
