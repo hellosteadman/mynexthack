@@ -81,9 +81,9 @@
 				into your hack&rsquo;s homepage.
 			</p>
 			
-			<textarea class="code" readonly>{% spaceless %}{% filter escape %}
+			<textarea class="code" readonly>{% spaceless %}{% autoescape %}
 				<a href="http://{{ SITE.domain }}/"><img src="http://{{ SITE.domain }}{{ MEDIA_URL }}img/badge.png" alt="Inspired by {{ SITE.name }}" /></a>
-			{% endfilter %}{% endspaceless %}</textarea>
+			{% endautoescape %}{% endspaceless %}</textarea>
 		</div>
 	</div>
 {% endblock content %}
