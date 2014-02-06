@@ -9,7 +9,7 @@ class Idea(models.Model):
 	title = models.CharField(max_length = 100)
 	description = models.TextField(null = True, blank = True)
 	sent = models.DateTimeField(auto_now_add = True)
-	used = models.BooleanField()
+	used = models.BooleanField(default = False)
 	comments = generic.GenericRelation('comments.Comment')
 	
 	def __unicode__(self):
