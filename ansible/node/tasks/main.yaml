@@ -1,0 +1,3 @@
+---
+- name: Install Node.js
+  shell: "chdir={{ virtualenv }} bin/nodeenv --force {{ virtualenv }}"

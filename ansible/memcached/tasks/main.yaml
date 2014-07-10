@@ -1,0 +1,13 @@
+---
+- name: Install memcached
+  sudo: yes
+  apt: pkg=memcached
+  tags:
+  - cache
+
+- name: Install python-memcached
+  sudo: yes
+  pip: name=python-memcached
+       virtualenv='{{ virtualenv }}'
+  tags:
+  - cache

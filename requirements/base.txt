@@ -1,0 +1,12 @@
+Django==1.6
+Pillow
+South>=0.8
+django-bower
+django-social-auth
+django-taggit==0.10
+nodeenv
+psycopg2
+python-dateutil
+pytz
+raven>=4.2
+sorl-thumbnail>=11.12

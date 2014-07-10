@@ -1,0 +1,17 @@
+---
+- name: Install Bower
+  shell: bin/npm install -g bower
+         chdir='{{ virtualenv }}'
+
+- name: Configure Bower
+  sudo: yes
+  sudo_user: '{{ dbuser }}'
+  copy: src=bowerrc dest='/home/{{ dbuser }}/.bowerrc'
+
+- name: Create third-party components directory
+  file: path={{ virtualenv }}components state=directory owner={{ dbuser }} mode=0775
+
+- name: Gather frontend components from Bower
+  sudo: yes
+  sudo_user: '{{ dbuser }}'
+  command: '{{ virtualenv }}exec bower install'

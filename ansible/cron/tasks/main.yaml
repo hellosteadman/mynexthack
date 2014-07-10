@@ -1,0 +1,15 @@
+---
+- name: 'Update Bambu crontab'
+  cron: name="manage.py cron"
+        job="{{ virtualenv }}exec cron /dev/null"
+        user="{{ dbuser }}"
+  tags:
+  - cron
+
+- name: 'Update session crontab'
+  cron: name="manage.py clearsessions"
+        special_time="daily"
+        job="{{ virtualenv }}exec clearsessions > /dev/null"
+        user="{{ dbuser }}"
+  tags:
+  - cron

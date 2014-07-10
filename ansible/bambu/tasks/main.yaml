@@ -1,0 +1,8 @@
+---
+- name: Update Bambu
+  pip: requirements=requirements/bambu.txt
+       virtualenv='{{ virtualenv }}'
+       chdir='{{ virtualenv }}'
+       extra_args="--upgrade --no-deps"
+  tags:
+  - bambu

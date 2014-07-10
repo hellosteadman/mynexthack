@@ -1,0 +1,15 @@
+---
+- name: Install gunicorn
+  pip: name=gunicorn
+       virtualenv='{{ virtualenv }}'
+
+- name: Copy gunicorn configuration
+  template: src=gunicorn.conf dest=/etc/init/gunicorn.conf mode=0644
+  tags:
+  - web
+
+- name: Restart gunicorn
+  action: service name=gunicorn state=restarted
+  sudo: yes
+  tags:
+  - web

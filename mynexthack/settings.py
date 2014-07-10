@@ -1,24 +1,41 @@
-from settings_local import *
-from os import path
+from os import path, environ
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': environ['DATABASE_NAME'],
+        'USER': environ['DATABASE_USER'],
+        'PASSWORD': environ['DATABASE_PASSWORD'],
+        'HOST': environ.get('DATABASE_HOST', ''),
+        'PORT': environ.get('DATABASE_PORT', '')
+    }
+}
+
+DEBUG = environ.get('DEBUG') in ('True', 'true', True, 1)
 TEMPLATE_DEBUG = DEBUG
+THUMBNAIL_DEBUG = DEBUG
+THUMBNAIL_KVSTORE = 'sorl.thumbnail.kvstores.redis_kvstore.KVStore'
+OEMBED_DEBUG = DEBUG
+ALLOWED_HOSTS = ('*',)
 
 ADMINS = (
-	('Mark Steadman', 'marksteadman@me.com'),
+	('Steadman', 'mark@steadman.io'),
 )
 
 MANAGERS = ADMINS
-TIME_ZONE = None
+TIME_ZONE = 'Europe/London'
 LANGUAGE_CODE = 'en-gb'
 SITE_ID = 1
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 SITE_ROOT = path.abspath(path.dirname(__file__) + '/../')
-MEDIA_ROOT = path.join(SITE_ROOT, 'media') + '/'
-STATIC_ROOT = path.join(SITE_ROOT, 'static') + '/'
-MEDIA_URL = '/media/'
+BOWER_COMPONENTS_ROOT = path.join(SITE_ROOT, 'components/')
+TEMP_DIR = path.join(SITE_ROOT, 'temp')
 STATIC_URL = '/static/'
+MEDIA_URL = DEBUG and '/media/' or ('http://%s/media/' % environ.get('DOMAIN', 'mynexthack.com'))
+STATIC_ROOT = environ['STATIC_ROOT']
+MEDIA_ROOT = environ['MEDIA_ROOT']
 
 STATICFILES_DIRS = (
 	# Put strings here, like '/home/html/static' or 'C:/www/django/static'.
@@ -27,11 +44,12 @@ STATICFILES_DIRS = (
 )
 
 STATICFILES_FINDERS = (
-	'django.contrib.staticfiles.finders.FileSystemFinder',
-	'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'djangobower.finders.BowerFinder'
 )
 
-SECRET_KEY = '2lb&amp;d95d+dd)jz(8ru3=9o((b1av)lf^@t^mp!b40g0anyh&amp;&amp;7'
+SECRET_KEY = environ['SECRET_KEY']
 
 TEMPLATE_LOADERS = (
 	'django.template.loaders.filesystem.Loader',
@@ -62,7 +80,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 	'social_auth.context_processors.social_auth_backends',
 	'social_auth.context_processors.social_auth_by_type_backends',
 	'social_auth.context_processors.social_auth_login_redirect',
-	'bambu.bootstrap.context_processors.basics',
+	'bambu_bootstrap.context_processors.basics',
 	'mynexthack.inspiration.context_processors.ideas'
 )
 
@@ -81,14 +99,15 @@ INSTALLED_APPS = (
 	'django.contrib.staticfiles',
 	'django.contrib.admin',
 	'django.contrib.admindocs',
-	'django.contrib.markup',
 	'django.contrib.humanize',
 	'raven.contrib.django.raven_compat',
 	'south',
 	'taggit',
 	'social_auth',
-	'bambu.enqueue',
-	'bambu.bootstrap.v2',
+	'bambu_bootstrap',
+    'bambu_mail',
+    'bambu_markup',
+    'mynexthack.core',
 	'mynexthack.inspiration',
 	'mynexthack.comments'
 )
@@ -99,8 +118,8 @@ AUTHENTICATION_BACKENDS = (
 	'social_auth.backends.contrib.github.GithubBackend'
 )
 
-TWITTER_CONSUMER_KEY = 'Z9pd6izLv3d73JkfCuafKQ'
-TWITTER_CONSUMER_SECRET = 'xA31LNupVUY6hcYR0iYL4vKvWX3nVwvxk4wId9BSY'
+TWITTER_CONSUMER_KEY = environ['TWITTER_KEY']
+TWITTER_CONSUMER_SECRET = environ['TWITTER_SECRET']
 
 LOGIN_URL = '/login/twitter/'
 LOGIN_REDIRECT_URL = '/me/'

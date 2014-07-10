@@ -1,0 +1,25 @@
+---
+- name: Create the SSH directory
+  sudo: yes
+  sudo_user: '{{ dbuser }}'
+  file: state=directory path='/home/{{ dbuser }}/.ssh/'
+
+- name: Upload SSH known hosts
+  sudo: yes
+  sudo_user: '{{ dbuser }}'
+  copy: src=~/.ssh/known_hosts dest='/home/{{ dbuser }}/.ssh/known_hosts' mode=0600
+
+- name: Upload SSH key
+  sudo: yes
+  sudo_user: '{{ dbuser }}'
+  copy: src=~/.ssh/clover 'dest=/home/{{ dbuser }}/.ssh/clover' mode=0600
+
+- name: Checkout project
+  sudo: yes
+  sudo_user: '{{ dbuser }}'
+  git: repo='{{ repo }}'
+       version=utopia
+       dest='{{ virtualenv }}'
+       key_file='/home/{{ dbuser }}/.ssh/clover'
+  tags:
+  - git

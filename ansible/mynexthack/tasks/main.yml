@@ -1,0 +1,42 @@
+---
+- name: Install dependency packages
+  apt: pkg={{ item }}
+       state=present
+       update_cache=yes
+  sudo: yes
+  with_items:
+    - curl
+    - build-essential
+    - libxml2
+    - libxslt-dev
+    - libjpeg-dev
+    - libfreetype6
+    - libfreetype6-dev
+    - zlib1g-dev
+    - python-imaging
+    - python-dev
+    - python-setuptools
+    - zlib1g-dev
+    - libfreetype6-dev
+    - python-tk
+    - libpq-dev
+    - git
+
+- name: Install Python requirements
+  sudo: yes
+  pip: requirements='{{ requirements }}'
+       virtualenv='{{ virtualenv }}'
+       chdir='{{ virtualenv }}'
+  tags:
+  - db
+
+- name: Upload shortcut file for executing Python functions within the environment
+  template: src=exec dest={{ virtualenv }}exec mode=755
+
+- name: Migrate
+  sudo: yes
+  sudo_user: '{{ dbuser }}'
+  command: '{{ virtualenv }}exec {{ item }}'
+  with_items:
+    - syncdb --noinput --migrate
+    - migrate --noinput

@@ -1,0 +1,11 @@
+-r base.txt
+requests>=2.0
+oauth
+oauth2
+pyquery
+html2text
+markdown
+httplib2
+docutils
+elementtree
+django-debug-toolbar

@@ -1,0 +1,24 @@
+---
+- name: Install virtualenv
+  apt: pkg=python-virtualenv
+       state=present
+  sudo: yes
+
+- name: Install pip
+  easy_install: name=pip
+  sudo: yes
+
+- name: Install Django
+  sudo: yes
+  sudo_user: '{{ dbuser }}'
+  pip: name=django
+       state=present
+       version=1.6
+       virtualenv='{{ virtualenv }}'
+
+- name: Install Sentry client
+  sudo: yes
+  sudo_user: '{{ dbuser }}'
+  pip: name=raven
+       state=present
+       virtualenv='{{ virtualenv }}'

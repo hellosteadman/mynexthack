@@ -1,0 +1,28 @@
+---
+- hosts: clover
+  roles:
+  - user
+  - git
+  - django
+  - postgresql
+  - bambu
+  - memcached
+  - redis
+  - mynexthack
+  - node
+  - bower
+  - static
+  - gunicorn
+  - nginx
+  - cron
+  vars:
+    virtualenv: '/opt/env/mynexthack.com/'
+    project: '/opt/env/mynexthack.com/'
+    media: '/opt/media/mynexthack.com/media/'
+    static: '/opt/media/mynexthack.com/static/'
+    repo: 'git@github.com:iamsteadman/mynexthack.git'
+    domain: 'mynexthack.com'
+    wsgi: 'mynexthack.wsgi'
+    dbhost: 'localhost'
+    dbport: ''
+    requirements: 'requirements.txt'

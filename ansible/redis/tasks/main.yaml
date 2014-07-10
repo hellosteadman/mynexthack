@@ -1,0 +1,10 @@
+---
+- name: Install Redis
+  apt: pkg=redis-server
+       state=installed
+  sudo: yes
+
+- name: Install Redis Python package
+  pip: name=redis
+       virtualenv='{{ virtualenv }}'
+  sudo: yes

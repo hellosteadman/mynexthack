@@ -1,0 +1,21 @@
+---
+- hosts: precise64
+  roles:
+  - user
+  - django
+  - postgresql
+  - memcached
+  - redis
+  - mynexthack
+  - node
+  - bower
+  - runserver
+  vars:
+    virtualenv: '/home/vagrant/'
+    project: '/vagrant/'
+    media: '/vagrant/media/'
+    static: '/vagrant/static/'
+    dbhost: 'localhost'
+    domain: '192.168.0.51:8000'
+    dbport: ''
+    requirements: '/vagrant/requirements/development.txt'

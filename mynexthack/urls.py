@@ -3,8 +3,8 @@ from django.conf import settings
 from django.contrib import admin
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.vary import vary_on_cookie
-from bambu.bootstrap.views import DirectTemplateView
-from bambu.bootstrap.decorators import body_classes
+from bambu_bootstrap.views import DirectTemplateView
+from bambu_bootstrap.decorators import body_classes
 
 admin.autodiscover()
 
@@ -19,7 +19,7 @@ urlpatterns = patterns('',
 		),
 		name = 'home'
 	),
-	url(r'^mail/', include('bambu.mail.urls')),
+	url(r'^mail/', include('bambu_mail.urls')),
 	url(r'logout/$',
 		'django.contrib.auth.views.logout',
 		{

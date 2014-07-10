@@ -4,3 +4,5 @@ logs/*
 mynexthack/settings_local.py
 static/*
 /newrelic.ini
+
+/.vagrant/
