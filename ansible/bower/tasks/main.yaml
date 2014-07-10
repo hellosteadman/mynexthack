@@ -1,5 +1,6 @@
 ---
 - name: Install Bower
+  sudo: yes
   shell: bin/npm install -g bower
          chdir='{{ virtualenv }}'
 

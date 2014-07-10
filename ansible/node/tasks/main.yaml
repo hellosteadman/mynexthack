@@ -1,3 +1,4 @@
 ---
 - name: Install Node.js
+  sudo: yes
   shell: "chdir={{ virtualenv }} bin/nodeenv --force {{ virtualenv }}"

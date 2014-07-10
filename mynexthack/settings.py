@@ -104,12 +104,17 @@ INSTALLED_APPS = (
 	'south',
 	'taggit',
 	'social_auth',
+    'djangobower',
 	'bambu_bootstrap',
     'bambu_mail',
     'bambu_markup',
     'mynexthack.core',
 	'mynexthack.inspiration',
 	'mynexthack.comments'
+)
+
+BOWER_INSTALLED_APPS = (
+    'bootstrap',
 )
 
 AUTHENTICATION_BACKENDS = (
