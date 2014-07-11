@@ -11,3 +11,5 @@
   sudo: yes
   sudo_user: '{{ dbuser }}'
   command: '{{ virtualenv }}exec collectstatic --noinput --verbosity=0'
+  tags:
+  - git
