@@ -22,30 +22,29 @@
 
 {% block content %}
 	<div class="row">
-		<div class="span4">
+		<div class="col-sm-4">
 			<h2 class="has-pre-title">
 				<span class="pre-title">Here are a few of the</span>
 				Latest ideas
 			</h2>
 
-			<div class="media">
+			<ul class="media-list">
 				{% for idea in latest_ideas %}
-					<a class="pull-left">
-						<img class="media-object img-circle loading" src="//twitter.com/api/users/profile_image/{{ idea.sender.username }}" width="32" height="32" />
-					</a>
-
-					<div class="media-body">
-						<p>
-							<a href="{{ idea.get_absolute_url }}">{{ idea.title }}</a>
-						</p>
-					</div>
-
-					{% if not forloop.last %}<div class="clearfix"></div>{% endif %}
+					<li class="media">
+						<a class="pull-left" href="#">
+							<img class="media-object img-circle loading" src="//twitter.com/api/users/profile_image/{{ idea.sender.username }}" width="32" height="32" />
+						</a>
+						<div class="media-body">
+							<p>
+								<a href="{{ idea.get_absolute_url }}">{{ idea.title }}</a>
+							</p>
+						</div>
+					</li>
 				{% endfor %}
-			</div>
+			</ul>
 		</div>
 
-		<div class="span4">
+		<div class="col-sm-4">
 			<h2 class="has-pre-title">
 				<span class="pre-title">And here are just three of the</span>
 				Most popular ideas
@@ -68,7 +67,7 @@
 			</div>
 		</div>
 
-		<div class="span4">
+		<div class="col-sm-4">
 			<img id="small-badge" src="{% static 'img/badge-small.png' %}" alt="Inspired by {{ SITE.name }}" />
 
 			<h2 class="has-pre-title">
