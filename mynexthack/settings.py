@@ -117,6 +117,7 @@ INSTALLED_APPS = (
 
 BOWER_INSTALLED_APPS = (
     'bootstrap',
+    'fontawesome'
 )
 
 AUTHENTICATION_BACKENDS = (
