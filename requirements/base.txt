@@ -4,10 +4,15 @@ South>=0.8
 django-bower
 django-social-auth
 django-taggit==0.10
+html2text
 nodeenv
+oauth
+oauth2
 psycopg2
+pyquery
 python-dateutil
 pytz
 raven>=4.2
 requests>=2.0
 sorl-thumbnail>=11.12
+twitter

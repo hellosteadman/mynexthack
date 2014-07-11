@@ -1,8 +1,4 @@
 -r base.txt
-oauth
-oauth2
-pyquery
-html2text
 markdown
 httplib2
 docutils
