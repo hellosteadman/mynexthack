@@ -1,4 +1,5 @@
 bambu-bootstrap>=2.0
+bambu-comments>=2.0
 bambu-cron>=2.0
 bambu-mail>=2.0
 bambu-markup>=2.0
