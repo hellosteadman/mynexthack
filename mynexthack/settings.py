@@ -111,7 +111,8 @@ INSTALLED_APPS = (
     'bambu_markup',
     'mynexthack.core',
 	'mynexthack.inspiration',
-	'mynexthack.comments'
+	'mynexthack.comments',
+    'raven.contrib.django.raven_compat'
 )
 
 BOWER_INSTALLED_APPS = (
@@ -132,28 +133,61 @@ LOGIN_REDIRECT_URL = '/me/'
 ATOMIC_REQUESTS = True
 
 LOGGING = {
-	'version': 1,
-	'disable_existing_loggers': False,
-	'filters': {
-		'require_debug_false': {
-			'()': 'django.utils.log.RequireDebugFalse'
-		}
-	},
-	'handlers': {
-		'mail_admins': {
-			'level': 'ERROR',
-			'filters': ['require_debug_false'],
-			'class': 'django.utils.log.AdminEmailHandler'
-		}
-	},
-	'loggers': {
-		'django.request': {
-			'handlers': ['mail_admins'],
-			'level': 'ERROR',
-			'propagate': True,
-		},
-	}
+    'version': 1,
+    'disable_existing_loggers': True,
+    'root': {
+        'level': 'DEBUG',
+        'handlers': ['console']
+    },
+    'formatters': {
+        'verbose': {
+            'format': '%(message)s'
+        }
+    },
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler'
+        }
+    },
+    'loggers': {
+        'django.db.backends': {
+            'level': 'ERROR',
+            'handlers': ['console'],
+            'propagate': False
+        },
+        'south': {
+            'level': 'ERROR',
+            'handlers': ['console'],
+            'propagate': False
+        },
+        'bambu_cron': {
+            'level': 'DEBUG',
+            'handlers': ['console']
+        },
+        'raven': {
+            'level': 'DEBUG',
+            'handlers': ['console'],
+            'propagate': False
+        }
+    }
 }
+
+if not DEBUG:
+    LOGGING['handlers']['sentry'] = {
+        'level': 'ERROR',
+        'class': 'raven.contrib.django.raven_compat.handlers.SentryHandler',
+    }
+
+    LOGGING['loggers']['sentry.errors'] = {
+        'level': 'DEBUG',
+        'handlers': ['console'],
+        'propagate': False
+    }
+
+    RAVEN_CONFIG = {
+        'dsn': 'http://4d37d8fa60184e3fa522f0a680c7e2fd:0439f8de7aab4a9e9c5027c57fde3c11@blossom.cloud.steadman.io/7',
+    }
 
 BOOTSTRAP_NAVBAR_INVERSE = True
 TYPEKIT_KEY = 'vid0zdl'
