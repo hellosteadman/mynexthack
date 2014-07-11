@@ -2,8 +2,15 @@
 - name: Install nginx web server
   apt: pkg=nginx state=installed update_cache=true
 
-- name: Copy nginx configuration
+- name: Copy site configuration
   template: src=default.conf dest=/etc/nginx/sites-enabled/default
+  notify: restart nginx
+  tags:
+  - web
+  - server
+
+- name: Copy general configuration
+  template: src=dahlia.conf dest=/etc/nginx/conf.d/dahlia.conf
   notify: restart nginx
   tags:
   - web

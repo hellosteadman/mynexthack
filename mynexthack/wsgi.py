@@ -1,8 +1,14 @@
-import os, sys
+"""
+WSGI config for somethingnew project.
 
-sys.path.insert(0, os.path.dirname(__file__))
+It exposes the WSGI callable as a module-level variable named ``application``.
+
+For more information on this file, see
+https://docs.djangoproject.com/en/1.6/howto/deployment/wsgi/
+"""
+
+import os
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mynexthack.settings')
-os.environ['PYTHON_EGG_CACHE'] = os.path.dirname(__file__) + '/.python-eggs'
 
 from django.core.wsgi import get_wsgi_application
 application = get_wsgi_application()

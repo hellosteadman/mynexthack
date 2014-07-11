@@ -85,6 +85,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 )
 
 ROOT_URLCONF = 'mynexthack.urls'
+WSGI_APPLICATION = 'mynexthack.wsgi.application'
 
 TEMPLATE_DIRS = (
 	path.join(SITE_ROOT, 'templates') + '/',
