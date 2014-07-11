@@ -1,9 +1,9 @@
 ---
 - name: Create user account
-  sudo: no
+  sudo: yes
   user: name='{{ dbuser }}'
         state=present
 
 - name: Create empty repo directory
-  sudo: no
-  file: path='{{ virtualenv }}' state=directory owner='{{ dbuser }}' mode=0755
+  sudo: yes
+  file: path='{{ project }}' state=directory owner='{{ dbuser }}' mode=0755

@@ -1,5 +1,5 @@
 ---
-- hosts: clover
+- hosts: dahlia
   roles:
   - user
   - git
@@ -20,7 +20,7 @@
     project: '/opt/env/mynexthack.com/'
     media: '/opt/media/mynexthack.com/media/'
     static: '/opt/media/mynexthack.com/static/'
-    repo: 'git@github.com:iamsteadman/mynexthack.git'
+    repo: 'https://github.com/iamsteadman/mynexthack.git'
     domain: 'mynexthack.com'
     wsgi: 'mynexthack.wsgi'
     dbhost: 'localhost'

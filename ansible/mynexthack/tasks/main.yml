@@ -20,7 +20,6 @@
     - libfreetype6-dev
     - python-tk
     - libpq-dev
-    - git
 
 - name: Install Python requirements
   sudo: yes
