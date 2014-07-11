@@ -1,11 +1,12 @@
 {% extends 'bootstrap/base.html' %}
+{% load staticfiles %}
 
 {% block extra_head %}
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="{{ MEDIA_URL }}css/style.css" />
-	<link rel="shortcut icon" href="{{ MEDIA_URL }}img/favicon.ico" />
-	<link rel="icon" href="{{ MEDIA_URL }}img/favicon.png" />
-	
+	<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+	<link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" />
+	<link rel="icon" href="{% static 'img/favicon.png' %}" />
+
 	{{ block.super }}
 {% endblock extra_head %}
 
@@ -23,6 +24,6 @@
 {% endblock content %}
 
 {% block javascript %}
-	<script src="{{ MEDIA_URL }}js/functions.js"></script>
+	<script src="{% static 'js/functions.js' %}"></script>
 	{{ block.super }}
 {% endblock javascript %}

@@ -10,7 +10,7 @@
 				Got an afternoon and stuck for an idea? Ask your friends and followers via Twitter, and get
 				hacking!
 			</p>
-			
+
 			{% if request.user.is_anonymous %}
 				<a class="btn btn-primary btn-large" href="{% url 'socialauth_begin' 'twitter' %}">{% icon 'twitter' %} Sign up via Twitter</a>
 			{% else %}
@@ -27,62 +27,62 @@
 				<span class="pre-title">Here are a few of the</span>
 				Latest ideas
 			</h2>
-			
+
 			<div class="media">
 				{% for idea in latest_ideas %}
 					<a class="pull-left">
 						<img class="media-object img-circle loading" src="//twitter.com/api/users/profile_image/{{ idea.sender.username }}" width="32" height="32" />
 					</a>
-					
+
 					<div class="media-body">
 						<p>
 							<a href="{{ idea.get_absolute_url }}">{{ idea.title }}</a>
 						</p>
 					</div>
-					
+
 					{% if not forloop.last %}<div class="clearfix"></div>{% endif %}
 				{% endfor %}
 			</div>
 		</div>
-		
+
 		<div class="span4">
 			<h2 class="has-pre-title">
 				<span class="pre-title">And here are just three of the</span>
 				Most popular ideas
 			</h2>
-			
+
 			<div class="media">
 				{% for idea in popular_ideas %}
 					<a class="pull-left">
 						<img class="media-object img-circle loading" src="//twitter.com/api/users/profile_image/{{ idea.sender.username }}" width="32" height="32" />
 					</a>
-					
+
 					<div class="media-body">
 						<p>
 							<a href="{{ idea.get_absolute_url }}">{{ idea.title }}</a>
 						</p>
 					</div>
-					
+
 					{% if not forloop.last %}<div class="clearfix"></div>{% endif %}
 				{% endfor %}
 			</div>
 		</div>
-		
+
 		<div class="span4">
-			<img id="small-badge" src="{{ MEDIA_URL }}img/badge-small.png" alt="Inspired by {{ SITE.name }}" />
-			
+			<img id="small-badge" src="{% static 'img/badge-small.png' %}" alt="Inspired by {{ SITE.name }}" />
+
 			<h2 class="has-pre-title">
 				<span class="pre-title">Already built something?</span>
 				Get the badge!
 			</h2>
-			
+
 			<p>
 				Help spread the word and tell people how you got inspired by pasting this badge code
 				into your hack&rsquo;s homepage.
 			</p>
-			
+
 			<textarea class="code" readonly>{% spaceless %}{% autoescape on %}
-				<a href="http://{{ SITE.domain }}/"><img src="http://{{ SITE.domain }}{{ MEDIA_URL }}img/badge.png" alt="Inspired by {{ SITE.name }}" /></a>
+				<a href="http://{{ SITE.domain }}/"><img src="http://{{ SITE.domain }}{% static 'img/badge.png' %}" alt="Inspired by {{ SITE.name }}" /></a>
 			{% endautoescape %}{% endspaceless %}</textarea>
 		</div>
 	</div>
