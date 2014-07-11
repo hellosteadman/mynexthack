@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load icons markup humanize %}
+{% load icons markup humanize forms %}
 {% load url from future %}
 
 {% block page_header %}
@@ -11,7 +11,7 @@
 			All the things
 		{% endif %}
 	</h1>
-	
+
 	{% if recipient %}
 		{% if me %}
 			<p>
@@ -37,34 +37,34 @@
 			Got an idea for a hack?
 			<a href="{% url 'socialauth_begin' 'twitter' %}?next={% filter urlencode %}{% url 'ideas' recipient.username %}#field-title{% endfilter %}">Sign up via Twitter</a> and suggest one
 		</p>
-		
+
 		<hr />
 	{% endif %}
-	
+
 	<div class="media">
 		{% if request.user.is_authenticated and recipient %}
 			<a class="pull-left">
 				<img class="media-object img-circle loading" src="//twitter.com/api/users/profile_image/{{ request.user.username }}" width="64" height="64" />
 			</a>
-			
+
 			<div class="media-body">
 				<form class="form-stacked" method="post" id="idea-form">
 					{% for field in form %}
 						<div class="form-group{% if field.errors %} has-error{% endif %}" id="field-{{ field.html_name }}"{% if not forloop.first and request.method == 'GET' %} style="display: none;{% endif %}">
-							{{ field }}
-						
+							{{ field|bootstrapped }}
+
 							{% if field.errors %}
 								<span class="help-block">{{ field.errors|join:'<br />' }}</span>
 							{% endif %}
 						</div>
 					{% endfor %}
-					
+
 					<div class="form-group"{% if request.method == 'GET' %} style="display: none;"{% endif %}>
 						<button type="submit" class="btn btn-primary pull-left">
 							{% icon 'arrow-right' %}
 							Post your idea
 						</button>
-						
+
 						{% if recipient.pk != request.user.pk %}
 							<div class="checkbox pull-left">
 								<label>
@@ -74,19 +74,19 @@
 							</div>
 						{% endif %}
 					</div>
-					
+
 					{% csrf_token %}
 				</form>
 			</div>
-		
+
 			<hr />
 		{% endif %}
-		
+
 		{% for idea in ideas.object_list %}
 			<a class="pull-left">
 				<img class="media-object img-circle loading" src="//twitter.com/api/users/profile_image/{{ idea.sender.username }}" width="64" height="64" />
 			</a>
-			
+
 			<div class="media-body">
 				<h2 class="has-pre-title">
 					<span class="pre-title">
@@ -105,9 +105,9 @@
 					</span>
 					<a href="{{ idea.get_absolute_url }}">{{ idea.title }}</a>
 				</h2>
-				
+
 				{{ idea.description|striptags|markdown }}
-				
+
 				{% if request.user.is_authenticated %}
 					<p>
 						<a href="{% url 'vote_up' idea.recipient.username idea.slug %}">{% icon 'thumbs-up' %} Vote up</a> |
@@ -123,20 +123,20 @@
 					</p>
 				{% endif %}
 			</div>
-			
+
 			{% if not forloop.last %}<hr />{% endif %}
 		{% endfor %}
-		
+
 		{% if page.has_previous or page.has_next %}
 			{% if page.object_list|length > 1 %}
 				<hr />
 			{% endif %}
-			
+
 			<div class="blog-pagination clearfix">
 				{% if page.has_previous %}
 					<a href="?page={{ page.previous_page_number }}" class="pull-left">&larr; Newer blog posts</a>
 				{% endif %}
-				
+
 				{% if page.has_next %}
 					<a href="?page={{ page.next_page_number }}" class="pull-right">Older blog posts &rarr;</a>
 				{% endif %}
@@ -147,7 +147,7 @@
 
 {% block javascript %}
 	{{ block.super }}
-	
+
 	<script>
 		$(document).ready(
 			function() {
@@ -157,7 +157,7 @@
 						$(this).off('focus');
 					}
 				);
-				
+
 				if(document.location.hash == '#field-title') {
 					$('#id_title').focus();
 				}
