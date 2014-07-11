@@ -133,6 +133,17 @@ LOGIN_URL = '/login/twitter/'
 LOGIN_REDIRECT_URL = '/me/'
 ATOMIC_REQUESTS = True
 
+CACHES = {
+    'default': {
+        'BACKEND': DEBUG and (
+            'django.core.cache.backends.dummy.DummyCache'
+        ) or (
+            'django.core.cache.backends.memcached.MemcachedCache'
+        ),
+        'LOCATION': '127.0.0.1:11211'
+    }
+}
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': True,
