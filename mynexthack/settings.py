@@ -198,7 +198,7 @@ if not DEBUG:
     }
 
     RAVEN_CONFIG = {
-        'dsn': 'http://4d37d8fa60184e3fa522f0a680c7e2fd:0439f8de7aab4a9e9c5027c57fde3c11@blossom.cloud.steadman.io/7',
+        'dsn': 'http://6b4c45e746554f7487a41bbc6649def1:c0c83f9a8b1d49778cdb747a2e902862@bluebell.cloud.steadman.io/4',
     }
 
 BOOTSTRAP_NAVBAR_INVERSE = True
